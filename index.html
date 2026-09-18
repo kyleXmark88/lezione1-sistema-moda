@@ -1,1 +1,102 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Lezione 1</title></head><body><p>updating...</p></body></html>
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lezione 1 · Il Sistema Moda</title>
+<style>
+:root{--bg:#070707;--fg:#f6f1e8;--mu:#b4ab9e;--gold:#d4b483;--card:rgba(18,18,18,.74);--line:#2a2a2a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--fg);font-family:Georgia,serif;overflow:hidden}
+body{display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:rgba(8,8,8,.9);z-index:30}
+.brand b{color:var(--gold);font-weight:400}
+.controls{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+button{background:transparent;color:var(--fg);border:1px solid #3a3a3a;padding:7px 11px;cursor:pointer;font:11px/1 Helvetica,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+.sub{display:none;background:#16130e;padding:9px 16px;font:13px Helvetica,Arial,sans-serif;color:#eadcc4}
+body.en .sub{display:block}
+main{flex:1;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:none;overflow:auto}
+.slide.on{display:block;animation:enter .5s ease}
+@keyframes enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes ken{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero{position:relative;min-height:40vh;overflow:hidden}
+.hero img{width:100%;height:40vh;object-fit:cover;animation:ken 12s ease forwards}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#070707,transparent 55%)}
+.hero .cap{position:absolute;left:7vw;bottom:16px;z-index:2}
+.k{font:10px Helvetica,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+h1{font-size:clamp(32px,6vw,62px);font-weight:400}
+h2{font-size:clamp(24px,3.4vw,38px);font-weight:400;margin:0 0 12px}
+.wrap{padding:16px 7vw 86px;max-width:1100px}
+p,li{font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55}
+.mu{color:var(--mu)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);padding:12px}
+.card img,.refs img{width:100%;object-fit:cover;display:block;height:110px}
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.refs img{height:148px}
+ul.x{list-style:none}ul.x li{padding:7px 0 7px 16px;position:relative;font-family:Helvetica,Arial,sans-serif}
+footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;padding:8px 14px;border-top:1px solid var(--line);font:11px Helvetica,Arial,sans-serif;color:var(--mu);background:#080808}
+body.en .it{display:none}body.en .en{display:block}body:not(.en) .en{display:none}body:not(.en) .it{display:block}
+span.en,span.it{display:none}body.en span.en{display:inline}body:not(.en) span.it{display:inline}
+li.en,li.it{display:none}body.en li.en{display:list-item}body:not(.en) li.it{display:list-item}
+.start{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;text-align:center;background:#050505}
+.start.hide{display:none}
+.quiz label{display:block;border:1px solid #2a2a2a;padding:9px;margin:6px 0;cursor:pointer;font:15px Helvetica,Arial,sans-serif}
+.quiz label.good{border-color:#7d9a6c}.quiz label.bad{border-color:#b45a4a}
+.result{margin-top:12px;padding:12px;border:1px solid var(--gold);display:none}
+</style></head><body>
+<div class="start" id="boot"><div><div class="k">FSF 2026-27</div><h1>Il Sistema Moda</h1><p class="mu">Immagini, motion, suono, voce EN</p><p><button class="on" id="startBtn">Inizia lezione</button></p></div></div>
+<header><div class="brand">FSF · <b>Lezione 1</b></div><div class="controls"><button id="tr">Traduttore LIVE</button><button id="voice">Voce EN</button><button id="snd" class="on">Suono</button><button id="fs">Full</button><span id="timer"></span><button id="prev">Prev</button><span id="counter">1</span><button id="next">Next</button></div></header>
+<div class="sub"><small>EN</small> <span id="subtxt"></span></div>
+<main id="deck"></main>
+<footer><span>Luca Bacelli</span><span>T traduci · V voce</span></footer>
+<script>
+(function(){
+var IM='https://images.unsplash.com/photo-';
+var q='?auto=format&fit=crop&w=1200&q=70';
+var photos={run:IM+'1509631179647-0177331693ae'+q,look:IM+'1529139574466-a303027c1d8b'+q,edit:IM+'1469334031218-e382a71b716b'+q,str:IM+'1483985988355-763728e1935b'+q,mood:IM+'1558769132-cb1aea458c5e'+q,shop:IM+'1441986300917-64674bd600d8'+q,sys:IM+'1441984904996-e0b6ba687e04'+q,mod:IM+'1515886657613-9f3515b0c78f'+q,fw:IM+'1490481651871-ab18c4d45535'+q,sty:IM+'1487222477894-8943e31ef7b2'+q,mag:IM+'1544441893-675973e31985'+q,cam:IM+'1452587925148-ce544e77e70d'+q,rack:IM+'1558171813-4c088753af8f'+q};
+var slides=[
+{h:photos.run,it:'Il Sistema Moda',en:'The Fashion System',body:'<div class=refs><img src="'+photos.mood+'"><img src="'+photos.edit+'"><img src="'+photos.str+'"></div>',talk:'Welcome to Fashion Styling Fundamentals. Today we map the fashion system.'},
+{it:'Come funziona',en:'How it works',body:'<p class=it>Traduttore LIVE e Voce EN. Tu parli italiano.</p><p class=en>LIVE translator and English voice. You speak Italian.</p>',talk:'Italian professor, English students. Use the live translator and the English voice.'},
+{h:photos.look,it:'Chi siamo',en:'Who we are',body:'<ul class=x><li class=it>Nome, citta, perche styling</li><li class=en>Name, city, why styling</li></ul>',talk:'Introductions. Professor in Italian. Students in English.'},
+{it:'Obiettivi',en:'Goals',body:'<p class=it>Collocare lo stylist nel sistema.</p><p class=en>Place the stylist in the system.</p>',talk:'By the end you will place the stylist inside the system.'},
+{h:photos.sys,it:'Cos e il Sistema Moda',en:'What is the Fashion System',body:'<div class=grid><div class=card><img src="'+photos.rack+'"><h4>Product</h4></div><div class=card><img src="'+photos.edit+'"><h4>Image</h4></div><div class=card><img src="'+photos.str+'"><h4>System</h4></div></div>',talk:'The fashion system produces meanings, not only clothes.'},
+{it:'Dalla produzione alla promozione',en:'From production to promotion',body:'<p class=it>Creazione, sviluppo, produzione, distribuzione, comunicazione, consumo.</p><p class=en>Creation, development, production, distribution, communication, consumption.</p><div class=refs><img src="'+photos.mood+'"><img src="'+photos.shop+'"><img src="'+photos.rack+'"></div>',talk:'Six phases from creation to consumption.'},
+{h:photos.rack,it:'Dove sta lo stylist',en:'Where the stylist sits',body:'<div class=grid><div class=card><img src="'+photos.sty+'"><h4>Stylist</h4><p class=it>Interprete del brief.</p><p class=en>Interpreter of the brief.</p></div><div class=card><img src="'+photos.cam+'"><h4>Photographer</h4></div><div class=card><img src="'+photos.mag+'"><h4>Editor</h4></div></div>',talk:'The stylist is an interpreter. They do not design the garment. They decide how it speaks.'},
+{h:photos.fw,it:'Trend, Fashion Week, Show',en:'Trend, Fashion Week, Show',body:'<div class=refs><img src="'+photos.run+'"><img src="'+photos.fw+'"><img src="'+photos.mod+'"></div><p class=it>NY Londra Milano Parigi. Lo show costruisce desiderio.</p><p class=en>NY London Milan Paris. The show builds desire.</p>',talk:'Trends start in culture. Fashion Week in New York, London, Milan and Paris accelerates them.'},
+{h:photos.str,it:'Fashion victims',en:'Fashion victims',body:'<p class=it>Victim: trend senza filtro. Stylist: interprete.</p><p class=en>Victim: trend with no filter. Stylist: interpreter.</p>',talk:'A fashion victim copies the trend. The stylist is the interpreter.'},
+{h:photos.mood,it:'Workshop 40 min',en:'Workshop 40 min',body:'<p><button id=t25 type=button>Timer 25</button> <button id=t3 type=button>Timer 3</button> <button id=tstop type=button>Stop</button></p><div class=grid><div class=card><img src="'+photos.shop+'"><h4>G1</h4><p>idea to cover</p></div><div class=card><img src="'+photos.sty+'"><h4>G2</h4><p>3 roles</p></div><div class=card><img src="'+photos.run+'"><h4>G3</h4><p>Fashion Week</p></div><div class=card><img src="'+photos.mag+'"><h4>G4</h4><p>cover vibe</p></div></div>',talk:'Workshop. Four groups. Twenty five minutes research, then a three minute English pitch.'},
+{it:'Pitch',en:'Pitch',body:'<div class=refs><img src="'+photos.edit+'"><img src="'+photos.mod+'"><img src="'+photos.fw+'"></div><p class=en>3 minutes, one speaker, 1 to 3 images.</p>',talk:'Pitch in English. End with: in this system the stylist exists to.'},
+{it:'Quiz',en:'Quiz',body:'<form class=quiz id=quiz><p>1. Stylist role</p><label><input type=radio name=q1 value=0> Design</label><label><input type=radio name=q1 value=1> Interpret a brief into an image</label><p>2. Big 4</p><label><input type=radio name=q2 value=1> NY London Milan Paris</label><label><input type=radio name=q2 value=0> Rome Madrid</label><p>3. Victim</p><label><input type=radio name=q3 value=1> Follows trend with no filter</label><label><input type=radio name=q3 value=0> Creates calendar</label><p>4. Phase</p><label><input type=radio name=q4 value=1> Visual communication</label><label><input type=radio name=q4 value=0> Factory</label><p>5. Cover booklet</p><label><input type=radio name=q5 value=1> Vibe + moodboard</label><label><input type=radio name=q5 value=0> Business plan</label><p><button type=submit>Submit</button></p></form><div class=result id=result></div>',talk:'Five question test. Individual.'},
+{h:photos.edit,it:'Per la prossima volta',en:'For next time',body:'<p class=it>Magazine, 10 immagini, Mower.</p><p class=en>Magazine, 10 images, Mower.</p>',talk:'Homework. Choose your magazine, bring ten reference images, and read Mower.'}
+];
+var deck=document.getElementById('deck');
+slides.forEach(function(s,n){
+  var el=document.createElement('section');
+  el.className='slide'+(n===0?' on':'');
+  var hero=s.h?'<div class=hero><img src="'+s.h+'"><div class=cap><div class=k>Lezione 1</div><h2 class=it>'+s.it+'</h2><h2 class=en>'+s.en+'</h2></div></div>':'<div class=wrap><div class=k>Lezione 1</div><h2 class=it>'+s.it+'</h2><h2 class=en>'+s.en+'</h2></div>';
+  el.innerHTML=hero+'<div class=wrap>'+s.body+'</div>';
+  deck.appendChild(el);
+});
+var els=[].slice.call(document.querySelectorAll('.slide')),n=els.length,i=0,en=false,voiceOn=false,sndOn=true,actx=null,tInt=null,left=0;
+function tone(f){if(!sndOn)return;try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();var o=actx.createOscillator(),a=actx.createGain();o.frequency.value=f;a.gain.value=.04;o.connect(a);a.connect(actx.destination);o.start();a.gain.exponentialRampToValueAtTime(.001,actx.currentTime+.12);o.stop(actx.currentTime+.14);}catch(e){}}
+function speak(){if(!voiceOn||!speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(slides[i].talk);u.lang='en-GB';u.rate=.95;speechSynthesis.speak(u);}
+function render(){els.forEach(function(s,k){s.classList.toggle('on',k===i)});document.getElementById('counter').textContent=(i+1)+' / '+n;document.getElementById('subtxt').textContent=slides[i].talk;if(voiceOn)speak();}
+function go(d){i=Math.max(0,Math.min(n-1,i+d));tone(d>0?440:320);render();}
+document.getElementById('tr').onclick=function(){en=!en;document.body.classList.toggle('en',en);this.classList.toggle('on',en);this.textContent=en?'Traduttore ON':'Traduttore LIVE';};
+document.getElementById('voice').onclick=function(){voiceOn=!voiceOn;this.classList.toggle('on',voiceOn);if(voiceOn)speak();else if(speechSynthesis)speechSynthesis.cancel();};
+document.getElementById('snd').onclick=function(){sndOn=!sndOn;this.classList.toggle('on',sndOn);};
+document.getElementById('prev').onclick=function(){go(-1)};
+document.getElementById('next').onclick=function(){go(1)};
+document.getElementById('startBtn').onclick=function(){document.getElementById('boot').classList.add('hide');try{actx=new(window.AudioContext||window.webkitAudioContext)();actx.resume();}catch(e){}tone(520);};
+document.getElementById('fs').onclick=function(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){});else document.exitFullscreen();};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(1)}if(e.key==='ArrowLeft')go(-1);if(e.key==='t'||e.key==='T')document.getElementById('tr').click();if(e.key==='v'||e.key==='V')document.getElementById('voice').click();});
+function bindTimers(){var a=document.getElementById('t25'),b=document.getElementById('t3'),c=document.getElementById('tstop');if(!a)return;function fmt(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}function tick(){left--;document.getElementById('timer').textContent=fmt(Math.max(0,left));if(left<=0){clearInterval(tInt);document.getElementById('timer').textContent='TEMPO';tone(660);}}a.onclick=function(){clearInterval(tInt);left=1500;tInt=setInterval(tick,1000)};b.onclick=function(){clearInterval(tInt);left=180;tInt=setInterval(tick,1000)};c.onclick=function(){clearInterval(tInt);document.getElementById('timer').textContent='';};}
+bindTimers();
+document.addEventListener('click',function(){bindTimers();},true);
+var quiz=document.getElementById('quiz');
+if(quiz)quiz.onsubmit=function(e){e.preventDefault();var ok=0;['q1','q2','q3','q4','q5'].forEach(function(nm){var nodes=document.querySelectorAll('input[name='+nm+']');var sel=[].filter.call(nodes,function(x){return x.checked})[0];[].forEach.call(nodes,function(inp){inp.parentElement.classList.remove('good','bad');if(inp.value==='1')inp.parentElement.classList.add('good');if(sel===inp&&inp.value!=='1')inp.parentElement.classList.add('bad');});if(sel&&sel.value==='1')ok++;});document.getElementById('result').style.display='block';document.getElementById('result').textContent=ok+'/5';tone(ok>=4?740:220);};
+render();
+})();
+</script></body></html>
