@@ -4,8 +4,99 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Lezione 1 · Il Sistema Moda</title>
+<style>
+:root{--bg:#0b0b0b;--fg:#f3eee6;--mu:#aea79b;--gold:#c4a574;--card:#161616;--line:#2c2c2c;--ok:#7d9a6c;--bad:#b45a4a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--fg);font-family:Georgia,serif}
+body{display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:#111;border-bottom:1px solid var(--line);flex-wrap:wrap;position:sticky;top:0;z-index:20}
+.brand{font-size:14px;letter-spacing:.06em}.brand b{color:var(--gold);font-weight:400}
+.controls{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+button{background:transparent;color:var(--fg);border:1px solid var(--line);padding:8px 12px;cursor:pointer;font:12px/1 Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+button:hover{border-color:var(--gold);color:var(--gold)}
+button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+button:disabled{opacity:.35}
+#counter{font:12px Helvetica,Arial,sans-serif;color:var(--mu);min-width:64px;text-align:center}
+.sub{display:none;background:#1a1610;border-bottom:1px solid #3a3224;padding:10px 16px;font:14px/1.4 Helvetica,Arial,sans-serif;color:#e8dcc4}
+body.en .sub{display:block}
+.sub small{color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:10px;margin-right:8px}
+main{flex:1;overflow:auto;padding:24px 7vw 90px}
+.slide{display:none;max-width:960px;margin:0 auto}
+.slide.on{display:block}
+h1{font-size:clamp(30px,5vw,54px);font-weight:400;line-height:1.08;margin:6px 0 12px}
+h2{font-size:clamp(24px,3.2vw,36px);font-weight:400;margin:0 0 16px}
+h3{font-size:20px;color:var(--gold);font-weight:400;margin:18px 0 8px}
+p,li{font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55}
+.k{font:11px/1 Helvetica,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.mu{color:var(--mu);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--card);border:1px solid var(--line);padding:14px 16px}
+.card h4{font-size:18px;font-weight:400;margin-bottom:6px}
+.card p{font-size:14px;color:var(--mu)}
+img.hero{width:100%;height:250px;object-fit:cover;margin:14px 0;display:block}
+img.sm{width:100%;height:150px;object-fit:cover;display:block}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+ul.x{list-style:none}ul.x li{padding:7px 0 7px 16px;position:relative;font-family:Helvetica,Arial,sans-serif}ul.x li:before{content:"—";position:absolute;left:0;color:var(--gold)}
+footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;gap:8px;padding:10px 16px;background:#111;border-top:1px solid var(--line);font:12px Helvetica,Arial,sans-serif;color:var(--mu)}
+.dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:#333;display:inline-block}.dots i.on{background:var(--gold)}
+.quiz label{display:block;background:var(--card);border:1px solid var(--line);padding:10px 12px;margin:7px 0;cursor:pointer;font-family:Helvetica,Arial,sans-serif;font-size:15px}
+.quiz label.good{border-color:var(--ok)}.quiz label.bad{border-color:var(--bad)}
+.result{margin-top:14px;padding:12px;border:1px solid var(--gold);display:none;font-family:Helvetica,Arial,sans-serif}
+.note{font-size:13px;color:var(--mu);margin-top:18px;border-top:1px solid var(--line);padding-top:10px;font-family:Helvetica,Arial,sans-serif}
+#timer{font:13px Helvetica,Arial,sans-serif;color:var(--gold);min-width:70px;text-align:center}
+body.en .it{display:none}body.en .en{display:block}body:not(.en) .en{display:none}body:not(.en) .it{display:block}
+span.en,span.it{display:none}body.en span.en{display:inline}body:not(.en) span.it{display:inline}
+li.en,li.it{display:none}body.en li.en{display:list-item}body:not(.en) li.it{display:list-item}
+.start-overlay{position:fixed;inset:0;background:#0b0b0b;z-index:50;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+.start-overlay.hide{display:none}
+</style>
 </head>
 <body>
-<p>placeholder</p>
+<div class="start-overlay" id="boot"><div><div class="k">Fashion Styling Fundamentals · 2026–27</div><h1>Il Sistema Moda</h1><p class="mu" style="max-width:420px;margin:0 auto 22px">Lezione interattiva. Professore in italiano. Traduttore LIVE per gli studenti inglesi.</p><button class="on" id="startBtn">Inizia lezione</button></div></div>
+<header><div class="brand">FSF · <b>Lezione 1</b></div><div class="controls"><button id="tr">Traduttore LIVE · OFF</button><button id="fs">Schermo intero</button><span id="timer"></span><button id="prev">←</button><span id="counter">1 / 13</span><button id="next">→</button></div></header>
+<div class="sub" id="sub"><small>EN live</small><span id="subtxt"></span></div>
+<main>
+<section class="slide on"><div class="k">Fashion Styling & Multimedia · Semestre 1</div><h1 class="it">Il Sistema Moda</h1><h1 class="en">The Fashion System</h1><p class="mu it">Lezione 1 · Prof. Luca Bacelli</p><p class="mu en">Lesson 1 · Prof. Luca Bacelli</p><img class="hero" alt="runway" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1400&q=70"/><p class="it">Usa TRADUTTORE LIVE in alto.</p><p class="en">Use LIVE TRANSLATOR at the top.</p></section>
+<section class="slide"><div class="k">Uso in aula</div><h2 class="it">Professore italiano · studenti inglesi</h2><h2 class="en">Italian professor · English students</h2><div class="grid"><div class="card"><h4 class="it">Traduttore LIVE</h4><h4 class="en">LIVE translator</h4><p class="it">Attivalo quando parli. Le slide passano in inglese. Tu resti in italiano.</p><p class="en">Turn it on when you speak. Slides switch to English. You keep speaking Italian.</p></div><div class="card"><h4>90 min</h4><p class="it">20' teoria · 40' workshop · 15' pitch · 15' test</p><p class="en">20' theory · 40' workshop · 15' pitch · 15' test</p></div><div class="card"><h4>L01</h4><p class="it">Definire il ruolo dello stylist nel sistema moda.</p><p class="en">Define the stylist role in the fashion system.</p></div></div></section>
+<section class="slide"><div class="k">Parte 1</div><h2 class="it">Chi siamo</h2><h2 class="en">Who we are</h2><p class="it">Professore 60s in italiano. Studente 45s in inglese.</p><p class="en">Professor 60s in Italian. Student 45s in English.</p><ul class="x"><li class="it">Nome + città</li><li class="en">Name + city</li><li class="it">Perché styling</li><li class="en">Why styling</li><li class="it">Magazine o stylist</li><li class="en">Magazine or stylist</li><li class="it">Un capo indispensabile</li><li class="en">One essential garment</li></ul></section>
+<section class="slide"><div class="k">Obiettivi</div><h2 class="it">Alla fine saprai</h2><h2 class="en">By the end you will</h2><div class="grid"><div class="card"><h4>01</h4><p class="it">Descrivere il sistema moda come rete di attori.</p><p class="en">Describe the fashion system as a network.</p></div><div class="card"><h4>02</h4><p class="it">Collocare lo stylist tra produzione, comunicazione e consumo.</p><p class="en">Place the stylist between production, communication and consumption.</p></div><div class="card"><h4>03</h4><p class="it">Distinguere trend, Fashion Week, show e fashion victim.</p><p class="en">Distinguish trend, Fashion Week, show and fashion victim.</p></div><div class="card"><h4>04</h4><p class="it">Avviare THE COVER MAGAZINE.</p><p class="en">Start THE COVER MAGAZINE.</p></div></div></section>
+<section class="slide"><div class="k">Definizione</div><h2 class="it">Cos’è il Sistema Moda</h2><h2 class="en">What is the Fashion System</h2><p class="it">Non è solo industria dell’abbigliamento. Produce significati, non solo prodotti.</p><p class="en">Not only the clothing industry. It produces meanings, not only products.</p><div class="grid"><div class="card"><h4 class="it">Prodotto</h4><h4 class="en">Product</h4><p class="it">Capo, collezione, supply chain.</p><p class="en">Garment, collection, supply chain.</p></div><div class="card"><h4 class="it">Immagine</h4><h4 class="en">Image</h4><p class="it">Styling, editoriale, campagna, show.</p><p class="en">Styling, editorial, campaign, show.</p></div><div class="card"><h4 class="it">Sistema</h4><h4 class="en">System</h4><p class="it">Trend, media, buyer, Fashion Week.</p><p class="en">Trend, media, buyer, Fashion Week.</p></div></div></section>
+<section class="slide"><div class="k">Struttura</div><h2 class="it">Dalla produzione alla promozione</h2><h2 class="en">From production to promotion</h2><div class="two"><ul class="x"><li class="it"><b>Creazione</b> — direttore creativo, designer</li><li class="en"><b>Creation</b> — creative director, designer</li><li class="it"><b>Sviluppo</b> — modellista, product manager</li><li class="en"><b>Development</b> — pattern maker, product manager</li><li class="it"><b>Produzione</b> — manifattura</li><li class="en"><b>Production</b> — manufacturing</li><li class="it"><b>Distribuzione</b> — buyer, retail</li><li class="en"><b>Distribution</b> — buyer, retail</li><li class="it"><b>Comunicazione</b> — stylist, fotografo, PR</li><li class="en"><b>Communication</b> — stylist, photographer, PR</li><li class="it"><b>Consumo</b> — pubblico, victim / leader</li><li class="en"><b>Consumption</b> — public, victim / leader</li></ul><div><img class="sm" alt="look" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=70"/><p class="mu it">Piramide: couture → luxury → contemporary → high street.</p><p class="mu en">Pyramid: couture → luxury → contemporary → high street.</p></div></div></section>
+<section class="slide"><div class="k">Figure</div><h2 class="it">Dove sta lo stylist</h2><h2 class="en">Where the stylist sits</h2><p class="it">Lo stylist è un interprete: non disegna il capo, decide come il capo parla.</p><p class="en">The stylist is an interpreter: does not design the garment, decides how it speaks.</p><div class="grid"><div class="card"><h4>Creative Director</h4><p class="it">Visione di brand.</p><p class="en">Brand vision.</p></div><div class="card"><h4>Fashion Stylist</h4><p class="it">Selezione e coerenza visiva.</p><p class="en">Selection and visual coherence.</p></div><div class="card"><h4>Fashion Editor</h4><p class="it">Narrazione magazine.</p><p class="en">Magazine narrative.</p></div><div class="card"><h4>Photographer</h4><p class="it">Luce e inquadratura.</p><p class="en">Light and framing.</p></div><div class="card"><h4>Buyer</h4><p class="it">Cosa entra in store.</p><p class="en">What enters the store.</p></div><div class="card"><h4>PR</h4><p class="it">Chi vede il prodotto.</p><p class="en">Who sees the product.</p></div></div></section>
+<section class="slide"><div class="k">Dal trend allo show</div><h2 class="it">Trend · Fashion Week · Show</h2><h2 class="en">Trend · Fashion Week · Show</h2><img class="hero" alt="fw" src="https://images.unsplash.com/photo-1490481651871-ab18c4d45535?auto=format&fit=crop&w=1400&q=70"/><div class="grid"><div class="card"><h4>Trends</h4><p class="it">Cultura, strada, archivio. I media li accelerano.</p><p class="en">Culture, street, archive. Media accelerate them.</p></div><div class="card"><h4>Fashion Week</h4><p class="it">NY, Londra, Milano, Parigi.</p><p class="en">NY, London, Milan, Paris.</p></div><div class="card"><h4>Show</h4><p class="it">Non solo vestiti: mito e desiderio.</p><p class="en">Not only clothes: myth and desire.</p></div></div></section>
+<section class="slide"><div class="k">Consumo</div><h2 class="it">Fashion victims</h2><h2 class="en">Fashion victims</h2><p class="it">Victim: trend senza filtro. Leader: usa il sistema. Lo stylist è interprete.</p><p class="en">Victim: trend with no filter. Leader: uses the system. The stylist is an interpreter.</p></section>
+<section class="slide"><div class="k">Parte 2 · Workshop</div><h2 class="it">Lavoro di gruppo · 40 min</h2><h2 class="en">Group work · 40 min</h2><p class="it">4 gruppi. 25' ricerca + 3' pitch.</p><p class="en">4 groups. 25' research + 3' pitch.</p><p style="margin:12px 0"><button id="t25" type="button">Timer 25 min</button> <button id="t3" type="button">Timer 3 min</button> <button id="tstop" type="button">Stop</button></p><div class="grid"><div class="card"><h4>G1</h4><p class="it">Un capo: idea → sfilata → copertina.</p><p class="en">One garment: idea → runway → cover.</p></div><div class="card"><h4>G2</h4><p class="it">3 ruoli con lo stylist.</p><p class="en">3 roles with the stylist.</p></div><div class="card"><h4>G3</h4><p class="it">Una Fashion Week: 3 show, 1 trend.</p><p class="en">One Fashion Week: 3 shows, 1 trend.</p></div><div class="card"><h4>G4</h4><p class="it">Un magazine: vibe di copertina.</p><p class="en">One magazine: cover vibe.</p></div></div></section>
+<section class="slide"><div class="k">Restituzione</div><h2 class="it">Regole del pitch</h2><h2 class="en">Pitch rules</h2><ul class="x"><li class="it">3 minuti, un portavoce, in inglese.</li><li class="en">3 minutes, one speaker, in English.</li><li class="it">Chiudi con: Lo stylist in questo sistema serve a…</li><li class="en">Close with: In this system the stylist exists to…</li></ul></section>
+<section class="slide"><div class="k">Parte 3 · Test</div><h2 class="it">Quiz</h2><h2 class="en">Quiz</h2><form class="quiz" id="quiz"><p><b>1.</b> <span class="it">Ruolo dello stylist:</span><span class="en">Stylist role:</span></p><label><input type="radio" name="q1" value="0"> <span class="it">Disegnare la collezione</span><span class="en">Design the collection</span></label><label><input type="radio" name="q1" value="1"> <span class="it">Interpretare un brief in un’immagine</span><span class="en">Interpret a brief into an image</span></label><label><input type="radio" name="q1" value="0"> <span class="it">Gestire il budget</span><span class="en">Manage the budget</span></label><p style="margin-top:14px"><b>2.</b> Big 4:</p><label><input type="radio" name="q2" value="0"> Roma, Madrid, Tokyo, Dubai</label><label><input type="radio" name="q2" value="1"> New York, London, Milan, Paris</label><label><input type="radio" name="q2" value="0"> Milan, Florence, Paris, Cannes</label><p style="margin-top:14px"><b>3.</b> Fashion victim:</p><label><input type="radio" name="q3" value="1"> <span class="it">Segue il trend senza filtro</span><span class="en">Follows the trend with no filter</span></label><label><input type="radio" name="q3" value="0"> <span class="it">Crea il calendario</span><span class="en">Creates the calendar</span></label><label><input type="radio" name="q3" value="0"> Creative director</label><p style="margin-top:14px"><b>4.</b> <span class="it">Fase dello stylist:</span><span class="en">Stylist phase:</span></p><label><input type="radio" name="q4" value="0"> <span class="it">Manifattura</span><span class="en">Factory</span></label><label><input type="radio" name="q4" value="1"> <span class="it">Comunicazione visiva</span><span class="en">Visual communication</span></label><label><input type="radio" name="q4" value="0"> <span class="it">Filati</span><span class="en">Yarn</span></label><p style="margin-top:14px"><b>5.</b> COVER MAGAZINE:</p><label><input type="radio" name="q5" value="1"> Vibe + moodboard</label><label><input type="radio" name="q5" value="0"> Business plan</label><label><input type="radio" name="q5" value="0"> Still life only</label><p style="margin-top:16px"><button type="submit">Invia quiz</button></p></form><div class="result" id="result"></div></section>
+<section class="slide"><div class="k">Chiusura</div><h2 class="it">Per la prossima volta</h2><h2 class="en">For next time</h2><ul class="x"><li class="it">Scegli il magazine del booklet.</li><li class="en">Choose the booklet magazine.</li><li class="it">Porta 10 immagini.</li><li class="en">Bring 10 images.</li><li class="it">Leggi Mower.</li><li class="en">Read Mower.</li></ul><p class="note it">Esame: booklet cover, still life 5+5+5, tre monografie, PDF + orale.</p><p class="note en">Exam: cover booklet, still life 5+5+5, three monographs, PDF + oral.</p></section>
+</main>
+<footer><span>Luca Bacelli · FSF</span><span class="dots" id="dots"></span><span>T traduci · frecce slide</span></footer>
+<script>
+(function(){
+var slides=[].slice.call(document.querySelectorAll('.slide'));
+var n=slides.length,i=0,en=false,tInt=null,left=0;
+var subtitles=["The Fashion System.","Italian professor, English students.","Introductions.","Place the stylist in the system.","The system produces meanings.","Six linked phases.","The stylist is an interpreter.","Trends, Fashion Week, show.","Victim versus interpreter.","Group workshop.","Pitch in English.","Five-question test.","Homework: magazine + 10 images."];
+var dots=document.getElementById('dots');
+slides.forEach(function(_,k){var s=document.createElement('i'); if(k===0)s.className='on'; dots.appendChild(s);});
+function render(){slides.forEach(function(s,k){s.classList.toggle('on',k===i);});[].slice.call(dots.children).forEach(function(d,k){d.classList.toggle('on',k===i);});document.getElementById('counter').textContent=(i+1)+' / '+n;document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===n-1;document.getElementById('subtxt').textContent=subtitles[i];}
+function go(d){i=Math.max(0,Math.min(n-1,i+d));render();}
+function toggleTr(){en=!en;document.body.classList.toggle('en',en);var b=document.getElementById('tr');b.textContent=en?'Traduttore LIVE \u00b7 ON':'Traduttore LIVE \u00b7 OFF';b.classList.toggle('on',en);}
+document.getElementById('tr').onclick=toggleTr;
+document.getElementById('prev').onclick=function(){go(-1)};
+document.getElementById('next').onclick=function(){go(1)};
+document.getElementById('startBtn').onclick=function(){document.getElementById('boot').classList.add('hide');};
+document.getElementById('fs').onclick=function(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){});else document.exitFullscreen();};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(1)}if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}if(e.key==='t'||e.key==='T')toggleTr();});
+function fmt(s){var m=Math.floor(s/60),ss=('0'+(s%60)).slice(-2);return m+':'+ss}
+function tick(){left--;document.getElementById('timer').textContent=fmt(Math.max(0,left));if(left<=0){clearInterval(tInt);tInt=null;document.getElementById('timer').textContent='TEMPO';}}
+function startT(sec){clearInterval(tInt);left=sec;document.getElementById('timer').textContent=fmt(left);tInt=setInterval(tick,1000)}
+document.getElementById('t25').onclick=function(){startT(25*60)};
+document.getElementById('t3').onclick=function(){startT(3*60)};
+document.getElementById('tstop').onclick=function(){clearInterval(tInt);tInt=null;document.getElementById('timer').textContent='';};
+document.getElementById('quiz').onsubmit=function(e){e.preventDefault();var ok=0;['q1','q2','q3','q4','q5'].forEach(function(name){var els=[].slice.call(document.querySelectorAll('input[name="'+name+'"]'));var sel=els.filter(function(x){return x.checked})[0];els.forEach(function(inp){var lab=inp.parentElement;lab.classList.remove('good','bad');if(inp.value==='1')lab.classList.add('good');if(sel===inp&&inp.value!=='1')lab.classList.add('bad');});if(sel&&sel.value==='1')ok++;});var box=document.getElementById('result');box.style.display='block';box.innerHTML='<b>'+(en?'Score: ':'Punteggio: ')+ok+'/5</b>';};
+render();
+})();
+</script>
 </body>
 </html>
