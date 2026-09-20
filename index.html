@@ -1,1 +1,90 @@
-<!DOCTYPE html><html lang=it><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><title>Lezione 1 Sistema Moda</title></head><body style='font-family:Georgia;background:#080808;color:#f4efe6;padding:40px;max-width:720px;margin:auto'><p style='letter-spacing:.2em;color:#d4b483;font:11px Helvetica'>FSF 2026-27</p><h1>Il Sistema Moda</h1><p>La versione completa (testi, Kawamura, workshop, quiz) e il file HTML da scaricare in chat. Link stabile della versione visuale:</p><p><a style='color:#d4b483' href='https://raw.githack.com/kyleXmark88/lezione1-sistema-moda/1e2c36ce0cb51a7b65a172b2a72d36f2f0472549/index.html'>Apri lezione online (versione visuale)</a></p><p style='color:#b8aea0'>Apri anche il file Lezione1_Sistema_Moda.html scaricato dalla chat: contiene Barthes, Kawamura 1-2-3, riviste, workshop e test.</p></body></html>
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lezione 1 · Il Sistema Moda</title>
+<style>
+:root{--bg:#0a0a0a;--fg:#f3eee6;--mu:#c2b8aa;--gold:#d4b483;--card:#151515;--line:#333}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--fg);font-family:Georgia,serif}
+body{display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:#111;z-index:30}
+.brand b{color:var(--gold);font-weight:400}
+.controls{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+button{background:transparent;color:var(--fg);border:1px solid #444;padding:7px 10px;cursor:pointer;font:11px/1 Helvetica,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+#counter{font:12px Helvetica,Arial,sans-serif;color:var(--gold)}
+.sub{display:none;background:#1a1610;padding:8px 14px;font:13px Helvetica,Arial,sans-serif;color:#eadcc4}
+body.en .sub{display:block}
+.home,.help{position:fixed;inset:0;z-index:40;background:#070707;overflow:auto;padding:28px 7vw 80px}
+.home.hide,.help.hide{display:none}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:18px;max-width:980px}
+.toc button{text-align:left;padding:14px;text-transform:none;letter-spacing:0;font:15px Helvetica,Arial,sans-serif;background:#141414}
+.toc button small{display:block;color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+main{flex:1;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:none;overflow:auto;padding-bottom:90px}
+.slide.on{display:block}
+.hero{height:32vh;overflow:hidden;background:#1a1a1a}
+.hero img{width:100%;height:32vh;object-fit:cover;display:block}
+.pad{padding:16px 6vw 0;max-width:900px}
+.k{font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+h2{font-size:clamp(24px,4vw,38px);font-weight:400;margin:0 0 14px}
+p,li{font-family:Helvetica,Arial,sans-serif;font-size:16.5px;line-height:1.62}
+p+p{margin-top:11px}
+.mu{color:var(--mu)}
+.quote{border-left:3px solid var(--gold);padding:10px 0 10px 14px;margin:14px 0;font-style:italic;color:#efe4d0}
+.cite{display:block;margin-top:6px;font-style:normal;font-size:12px;color:var(--mu)}
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.refs img{width:100%;height:130px;object-fit:cover;display:block;background:#1a1a1a}
+.cap{font:11px Helvetica,Arial,sans-serif;color:var(--mu);margin-top:4px}
+details{border:1px solid #3a3224;background:#12100c;padding:10px 12px;margin:14px 0}
+details summary{cursor:pointer;color:var(--gold);font:13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+details .in{margin-top:10px}
+ul.x{list-style:none;margin:12px 0}
+ul.x li{padding:6px 0 6px 16px;position:relative}
+ul.x li:before{content:"—";position:absolute;left:0;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.card{background:var(--card);border:1px solid var(--line);padding:12px}
+.card h4{font-weight:400;margin-bottom:6px}
+.card p{font-size:14px;color:var(--mu)}
+footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;padding:8px 12px;border-top:1px solid var(--line);font:11px Helvetica,Arial,sans-serif;color:var(--mu);background:#111}
+body.en .it{display:none!important}body.en .en{display:block}body:not(.en) .en{display:none!important}body:not(.en) .it{display:block}
+span.en,span.it{display:none}body.en span.en{display:inline!important}body:not(.en) span.it{display:inline!important}
+li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en) li.it{display:list-item!important}
+.quiz label{display:block;border:1px solid #2a2a2a;padding:8px;margin:5px 0;cursor:pointer;font:15px Helvetica,Arial,sans-serif}
+.quiz label.good{border-color:#7d9a6c}.quiz label.bad{border-color:#b45a4a}
+.result{margin-top:10px;padding:10px;border:1px solid var(--gold);display:none}
+</style></head>
+<body>
+<div class="home" id="home">
+<div class="k">Fashion Styling Fundamentals · 90 min</div>
+<h2>Il Sistema Moda</h2>
+<p class="it mu">Scegli un capitolo. Testi di lezione e approfondimenti da Barthes, Kawamura, Mower, Vogue Business, Camera Moda. Foto da Wikimedia Commons e Unsplash.</p>
+<p class="en mu">Pick a chapter. Lesson texts and readings from Barthes, Kawamura, Mower, Vogue Business, Camera Moda.</p>
+<p style="margin:18px 0"><button class="on" id="startBtn">Inizia</button> <button id="helpBtn">Come funziona</button></p>
+<div class="toc" id="toc"></div>
+</div>
+<div class="help hide" id="help">
+<div class="k">Guida</div>
+<h2 class="it">Come funziona</h2>
+<h2 class="en">How it works</h2>
+<p class="it">Il professore parla italiano. Gli studenti usano Traduttore LIVE (T) e Voce EN (V). Musica = elettronica lenta da sfilata. Full = proiettore. Home = indice capitoli. Frecce o Prev/Next per scorrere. Approfondimento = riquadro cliccabile sotto il testo.</p>
+<p class="en">Professor speaks Italian. Students use LIVE translator (T) and EN voice (V). Music = slow runway electronic. Home = chapter index. Approfondimento = clickable box under the text.</p>
+<p style="margin-top:18px"><button id="helpClose">Chiudi</button></p>
+</div>
+<header>
+<div class="brand">FSF · <b>Lezione 1</b></div>
+<div class="controls">
+<button id="homeBtn">Home</button>
+<button id="tr">Traduttore LIVE</button>
+<button id="voice">Voce EN</button>
+<button id="snd" class="on">Suono</button>
+<button id="music" class="on">Musica</button>
+<button id="fs">Full</button>
+<span id="timer"></span>
+<button id="prev">Prev</button><span id="counter">1</span><button id="next">Next</button>
+</div></header>
+<div class="sub"><small>EN</small> <span id="subtxt"></span></div>
+<main id="deck"></main>
+<footer><span>Capitoli + approfondimenti</span><span>Home · T · V</span></footer>
+<script src="lesson.js"></script>
+</body></html>
