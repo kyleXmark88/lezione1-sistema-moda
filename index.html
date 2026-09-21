@@ -50,25 +50,20 @@ footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space
 body.en .it{display:none!important}body.en .en{display:block}body:not(.en) .en{display:none!important}body:not(.en) .it{display:block}
 span.en,span.it{display:none}body.en span.en{display:inline!important}body:not(.en) span.it{display:inline!important}
 li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en) li.it{display:list-item!important}
-.quiz label{display:block;border:1px solid #2a2a2a;padding:8px;margin:5px 0;cursor:pointer;font:15px Helvetica,Arial,sans-serif}
-.quiz label.good{border-color:#7d9a6c}.quiz label.bad{border-color:#b45a4a}
-.result{margin-top:10px;padding:10px;border:1px solid var(--gold);display:none}
 </style></head>
 <body>
 <div class="home" id="home">
 <div class="k">Fashion Styling Fundamentals · 150 min · 2h30</div>
 <h2>Il Sistema Moda</h2>
-<p class="it mu">Scegli un capitolo. Testi e copertine vere (Vogue pubblico dominio, i-D 1980, British Vogue 2000). Barthes, Kawamura, Mower.</p>
-<p class="en mu">Pick a chapter. Written texts and real covers.</p>
+<p class="it mu">Workshop e correzione con schede inglesi già scritte. Nessun quiz.</p>
+<p class="en mu">Workshop and correction with ready English cards. No quiz.</p>
 <p style="margin:18px 0"><button class="on" id="startBtn">Inizia</button> <button id="helpBtn">Come funziona</button></p>
 <div class="toc" id="toc"></div>
 </div>
 <div class="help hide" id="help">
 <div class="k">Guida</div>
 <h2 class="it">Come funziona</h2>
-<h2 class="en">How it works</h2>
-<p class="it">Lezione di 2 ore e mezza. Professore in italiano. Traduttore LIVE (T), Voce EN (V), Musica on/off. Home = capitoli. Approfondimento = riquadro cliccabile.</p>
-<p class="en">Two and a half hours. Professor in Italian. LIVE translator (T), EN voice (V).</p>
+<p class="it">Tu parli italiano. Per correggere i gruppi apri Cap. 14 e premi Voce EN sulla scheda giusta. Non devi inventare l’inglese in piedi.</p>
 <p style="margin-top:18px"><button id="helpClose">Chiudi</button></p>
 </div>
 <header>
@@ -85,11 +80,12 @@ li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en)
 </div></header>
 <div class="sub"><small>EN</small> <span id="subtxt"></span></div>
 <main id="deck"></main>
-<footer><span>150 min · copertine Vogue / i-D</span><span>Home · T · V</span></footer>
+<footer><span>Workshop + correzione schede</span><span>Home · T · V</span></footer>
 <script src="p0.js"></script>
 <script src="p1.js"></script>
 <script src="p2.js"></script>
 <script src="p3.js"></script>
 <script src="p4.js"></script>
 <script src="engine.js"></script>
+<script src="say.js"></script>
 </body></html>
