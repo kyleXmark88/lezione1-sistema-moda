@@ -16,46 +16,49 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;pa
 .controls{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 button{background:transparent;color:var(--ink);border:1px solid #d7ccbb;padding:8px 12px;cursor:pointer;font:10px/1 Karla,sans-serif;letter-spacing:.14em;text-transform:uppercase}
 button.on,#startBtn{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-#counter{font-size:11px;letter-spacing:.12em;color:var(--mute)}
-.home,.help{position:fixed;inset:0;z-index:40;background:var(--paper);overflow:auto;padding:48px 8vw 90px}
-.home.hide,.help.hide{display:none}
-.home .k{color:var(--rule)}
-.home h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(42px,8vw,78px);font-weight:500;line-height:.95;margin:10px 0 8px;max-width:14ch}
-.home .lead{max-width:36em;color:var(--mute);font-size:16px;line-height:1.55;margin-bottom:28px}
+#counter{font-size:11px;color:var(--mute)}
+.home{position:fixed;inset:0;z-index:40;background:var(--paper);overflow:auto;padding:48px 8vw 90px}
+.home.hide{display:none}
+.home h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(42px,8vw,72px);font-weight:500;margin:10px 0 18px}
 .toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;max-width:980px}
-.toc button{text-align:left;padding:16px;text-transform:none;letter-spacing:0;font:18px/1.2 "Cormorant Garamond",serif;background:var(--card);border-color:#e4d9c8}
-main{flex:1;position:relative;overflow:hidden;background:var(--paper)}
+.toc button{text-align:left;padding:16px;text-transform:none;letter-spacing:0;font:18px "Cormorant Garamond",serif;background:var(--card)}
+main{flex:1;position:relative;overflow:hidden}
 .slide{position:absolute;inset:0;display:none;overflow:auto;padding:18px 0 56px}
 .slide.on{display:block}
 .pad{padding:0 8vw}
 .k{font:10px Karla,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--rule);margin-bottom:6px}
 h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(28px,4vw,46px);font-weight:500;margin:0 0 14px}
-.hero,.refs,.vid,iframe{display:none!important}
+.hero,.refs,.vid,iframe,.carousel{display:none!important}
 .docread{margin:0 8vw 40px;padding:22px 26px 10px;background:var(--card);border-left:3px solid var(--rule);max-width:760px}
 .docread .lab{font:10px Karla,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--rule);margin:0 0 14px}
 .docread p{font:20px/1.55 "Cormorant Garamond",Georgia,serif;margin:0 0 14px}
-footer{height:6px;background:var(--rule);border:0}
+footer{height:6px;background:var(--rule)}
 body.en .it{display:none!important}body.en .en{display:block}
 body:not(.en) .en{display:none!important}body:not(.en) .it{display:block}
-#voice,.sub,#helpBtn,#help,#helpClose{display:none!important}
-#tr{display:inline-block!important}
+#voice,#snd,#music,#helpBtn,#help,#helpClose,.sub,.help{display:none!important}
 </style></head>
 <body class="en docente">
 <div class="home" id="home">
 <p class="k">Teacher script</p>
 <h2>The Fashion System</h2>
-<p class="lead">Reading text only. Start, then open a chapter. EN / IT in the header.</p>
 <p style="margin:0 0 28px"><button class="on" id="startBtn">Start</button></p>
 <div class="toc" id="toc"></div>
 </div>
+<div class="help hide" id="help"><button id="helpClose">x</button></div>
 <header>
 <div class="brand">FSF · <b>Teacher</b></div>
 <div class="controls">
 <button id="homeBtn">Home</button>
+<button id="helpBtn">?</button>
 <button id="tr">EN</button>
+<button id="voice">V</button>
+<button id="snd">Sound</button>
+<button id="music">Music</button>
 <button id="fs">Full</button>
+<span id="timer"></span>
 <button id="prev">Prev</button><span id="counter">1</span><button id="next">Next</button>
 </div></header>
+<div class="sub"><span id="subtxt"></span></div>
 <main id="deck"></main>
 <footer></footer>
 <script src="p0.js"></script>
