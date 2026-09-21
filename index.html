@@ -19,7 +19,6 @@ body.en .sub{display:block}
 .home.hide,.help.hide{display:none}
 .toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:18px;max-width:980px}
 .toc button{text-align:left;padding:14px;text-transform:none;letter-spacing:0;font:15px Helvetica,Arial,sans-serif;background:#141414}
-.toc button small{display:block;color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
 main{flex:1;position:relative;overflow:hidden}
 .slide{position:absolute;inset:0;display:none;overflow:auto;padding-bottom:90px}
 .slide.on{display:block}
@@ -38,14 +37,8 @@ p+p{margin-top:11px}
 .cap{font:11px Helvetica,Arial,sans-serif;color:var(--mu);margin-top:4px}
 details{border:1px solid #3a3224;background:#12100c;padding:10px 12px;margin:14px 0}
 details summary{cursor:pointer;color:var(--gold);font:13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
-details .in{margin-top:10px}
-ul.x{list-style:none;margin:12px 0}
-ul.x li{padding:6px 0 6px 16px;position:relative}
-ul.x li:before{content:"—";position:absolute;left:0;color:var(--gold)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
 .card{background:var(--card);border:1px solid var(--line);padding:12px}
-.card h4{font-weight:400;margin-bottom:6px}
-.card p{font-size:14px;color:var(--mu)}
 footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;padding:8px 12px;border-top:1px solid var(--line);font:11px Helvetica,Arial,sans-serif;color:var(--mu);background:#111}
 body.en .it{display:none!important}body.en .en{display:block}body:not(.en) .en{display:none!important}body:not(.en) .it{display:block}
 span.en,span.it{display:none}body.en span.en{display:inline!important}body:not(.en) span.it{display:inline!important}
@@ -53,17 +46,16 @@ li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en)
 </style></head>
 <body>
 <div class="home" id="home">
-<div class="k">Fashion Styling Fundamentals · 150 min · 2h30</div>
+<div class="k">Fashion Styling Fundamentals · 150 min</div>
 <h2>Il Sistema Moda</h2>
-<p class="it mu">Workshop e correzione con schede inglesi già scritte. Nessun quiz.</p>
-<p class="en mu">Workshop and correction with ready English cards. No quiz.</p>
+<p class="it mu">Due viste: classe (pulita) e docente (copione a destra). Pulsante Docente / Proiettore.</p>
 <p style="margin:18px 0"><button class="on" id="startBtn">Inizia</button> <button id="helpBtn">Come funziona</button></p>
 <div class="toc" id="toc"></div>
 </div>
 <div class="help hide" id="help">
 <div class="k">Guida</div>
-<h2 class="it">Come funziona</h2>
-<p class="it">Tu parli italiano. Per correggere i gruppi apri Cap. 14 e premi Voce EN sulla scheda giusta. Non devi inventare l’inglese in piedi.</p>
+<h2 class="it">Due schermi</h2>
+<p class="it">Laptop tuo: apri il link DOCENTE. Proiettore o PC studenti: link CLASSE. Stesse slide. Solo tu vedi il testo da leggere a destra, nascosto dallo schermo.</p>
 <p style="margin-top:18px"><button id="helpClose">Chiudi</button></p>
 </div>
 <header>
@@ -80,7 +72,7 @@ li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en)
 </div></header>
 <div class="sub"><small>EN</small> <span id="subtxt"></span></div>
 <main id="deck"></main>
-<footer><span>Workshop + correzione schede</span><span>Home · T · V</span></footer>
+<footer><span>Classe pulita · Docente con copione</span><span>Home</span></footer>
 <script src="p0.js"></script>
 <script src="p1.js"></script>
 <script src="p2.js"></script>
@@ -88,4 +80,6 @@ li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en)
 <script src="p4.js"></script>
 <script src="engine.js"></script>
 <script src="say.js"></script>
+<script src="notes.js"></script>
+<script src="docente.js"></script>
 </body></html>
