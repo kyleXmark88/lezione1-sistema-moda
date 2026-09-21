@@ -5,7 +5,7 @@ document.body.classList.remove("en");
 ["voice","tr"].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display="none";});
 if(!document.querySelector("style#docstyle")){
 var st=document.createElement("style");st.id="docstyle";
-st.textContent="body.docente .hero,body.docente .refs,body.docente .vid,body.docente .slide img{display:none!important}body.docente .tnotes{display:none!important}body.docente .docread{display:block;padding:8px 7vw 80px;max-width:820px}body:not(.docente) .docread{display:none!important}body.docente .docread .lab{font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d4b483;margin:18px 0 8px}body.docente .docread p{font:18px/1.6 Helvetica,Arial,sans-serif;color:#eadcc4;margin:0 0 14px}#voice,#tr,.say,.sub{display:none!important}";
+st.textContent="body.docente .hero,body.docente .refs,body.docente .vid,body.docente .playvid,body.docente iframe,body.docente .slide img{display:none!important}body.docente .tnotes{display:none!important}body.docente .docread{display:block;padding:8px 7vw 80px;max-width:820px}body:not(.docente) .docread{display:none!important}body.docente .docread .lab{font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d4b483;margin:18px 0 8px}body.docente .docread p{font:18px/1.6 Helvetica,Arial,sans-serif;color:#eadcc4;margin:0 0 14px}#voice,#tr,.say,.sub{display:none!important}";
 document.head.appendChild(st);}
 var hb=document.querySelector(".controls");
 if(hb&&!document.getElementById("projBtn")){
