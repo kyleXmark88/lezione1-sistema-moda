@@ -1,0 +1,9 @@
+.hero,.refs{height:auto!important;overflow:visible!important;background:transparent!important}
+.hero img,.refs img,.carousel img{width:100%;height:auto;max-height:72vh;object-fit:contain!important;display:block;background:#f6f1e8}
+.carousel{position:relative;margin:0 8vw 24px;background:#fffdf8;border:1px solid #e4d9c8}
+.carousel img{display:none;margin:0 auto}
+.carousel img.on{display:block}
+.carnav{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-top:1px solid #e4d9c8;font:11px Karla,sans-serif;letter-spacing:.12em}
+.carnav button{min-width:40px}
+body:not(.docente) .docread{margin:0 8vw 12px;padding:14px 18px;max-width:none;border:1px solid #e4d9c8;border-left:3px solid #c9a36a}
+body:not(.docente) .docread p{font:18px/1.4 "Cormorant Garamond",Georgia,serif;margin:0}
