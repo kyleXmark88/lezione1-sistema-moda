@@ -1,52 +1,61 @@
 <!DOCTYPE html>
-<html lang="it"><head>
+<html lang="en"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Lezione 1</title>
+<title>Lesson 1 · The Fashion System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Josefin+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0a;--fg:#f3eee6;--gold:#d4b483;--line:#333}
+:root{--bg:#0c0b0a;--fg:#f4efe6;--gold:#c9a36a;--line:#2a2622;--paper:#f3eee6}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:var(--bg);color:var(--fg);font-family:Georgia,serif}
-body{display:flex;flex-direction:column}
-header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);background:#111;z-index:30}
-.brand b{color:var(--gold);font-weight:400}
-.controls{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
-button{background:transparent;color:var(--fg);border:1px solid #444;padding:7px 10px;cursor:pointer;font:11px/1 Helvetica,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+html,body{height:100%;background:var(--bg);color:var(--fg)}
+body{display:flex;flex-direction:column;font-family:"Cormorant Garamond",Georgia,serif}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line);background:#11100e;z-index:30}
+.brand{font-family:"Josefin Sans",Helvetica,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8a8175}
+.brand b{color:var(--gold);font-weight:500}
+.controls{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{background:transparent;color:var(--fg);border:1px solid #3a342c;padding:8px 11px;cursor:pointer;font:10px/1 "Josefin Sans",Helvetica,sans-serif;letter-spacing:.12em;text-transform:uppercase}
 button.on{background:var(--gold);color:#111;border-color:var(--gold)}
-#counter{font:12px Helvetica,Arial,sans-serif;color:var(--gold)}
-.home,.help{position:fixed;inset:0;z-index:40;background:#070707;overflow:auto;padding:28px 7vw 80px}
+#counter{font:11px "Josefin Sans",sans-serif;color:var(--gold)}
+.home,.help{position:fixed;inset:0;z-index:40;background:#0c0b0a;overflow:auto;padding:36px 7vw 80px}
 .home.hide,.help.hide{display:none}
-.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:18px;max-width:980px}
-.toc button{text-align:left;padding:14px;text-transform:none;letter-spacing:0;font:15px Helvetica,Arial,sans-serif;background:#141414}
+.home h2{font-size:clamp(36px,6vw,64px);font-weight:500;letter-spacing:-.02em}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:28px;max-width:980px}
+.toc button{text-align:left;padding:16px 14px;text-transform:none;letter-spacing:0;font:16px "Cormorant Garamond",serif;background:#161412;border-color:#2a2622}
 main{flex:1;position:relative;overflow:hidden}
-.slide{position:absolute;inset:0;display:none;overflow:auto;padding-bottom:48px}
+.slide{position:absolute;inset:0;display:none;overflow:auto;padding-bottom:40px}
 .slide.on{display:block}
-.hero{height:62vh;overflow:hidden;background:#1a1a1a}
-.hero img{width:100%;height:62vh;object-fit:cover;display:block}
-.pad{padding:12px 6vw 0}
-.k{font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-h2{font-size:clamp(22px,3.4vw,34px);font-weight:400;margin:0 0 10px}
-.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 6vw}
-.refs img{width:100%;height:160px;object-fit:cover;display:block;background:#1a1a1a}
-footer{position:fixed;bottom:0;left:0;right:0;padding:8px 12px;border-top:1px solid var(--line);background:#111;height:36px}
+.hero{height:28vh;min-height:140px;overflow:hidden;background:#161412}
+.hero img{width:100%;height:28vh;object-fit:cover;display:block}
+.pad{padding:10px 6vw 0}
+.k{font:10px "Josefin Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+h2{font-size:clamp(26px,3.6vw,40px);font-weight:500;margin:0 0 8px}
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 6vw}
+.refs img{width:100%;height:110px;object-fit:cover;display:block;background:#161412}
+.docread{display:block;margin:8px 6vw 48px;padding:18px 20px;background:var(--paper);color:#1a1612;max-width:860px}
+.docread .lab{font:10px "Josefin Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#8a6a3a;margin:0 0 10px}
+.docread p{font:19px/1.55 "Cormorant Garamond",Georgia,serif;color:#1a1612;margin:0 0 10px}
+footer{position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--line);background:#11100e;height:8px}
 body.en .it{display:none!important}body.en .en{display:block}body:not(.en) .en{display:none!important}body:not(.en) .it{display:block}
+body.docente .hero,body.docente .refs,body.docente .vid,body.docente iframe{display:none!important}
 #voice,.sub,#helpBtn,#help,#helpClose{display:none!important}
 </style></head>
 <body>
 <div class="home" id="home">
-<h2>Il Sistema Moda</h2>
-<p style="margin:18px 0"><button class="on" id="startBtn">Inizia</button></p>
+<p class="k">Fashion Styling Fundamentals</p>
+<h2>The Fashion System</h2>
+<p style="margin:22px 0"><button class="on" id="startBtn">Start</button></p>
 <div class="toc" id="toc"></div>
 </div>
 <div class="help hide" id="help"><button id="helpClose">x</button></div>
 <header>
-<div class="brand">FSF · <b>Lezione 1</b></div>
+<div class="brand">FSF · <b>Lesson 1</b></div>
 <div class="controls">
 <button id="homeBtn">Home</button>
 <button id="helpBtn">?</button>
-<button id="tr">Traduttore LIVE</button>
+<button id="tr">IT / EN</button>
 <button id="voice">V</button>
-<button id="snd">Suono</button>
-<button id="music">Musica</button>
+<button id="snd">Sound</button>
+<button id="music">Music</button>
 <button id="fs">Full</button>
 <span id="timer"></span>
 <button id="prev">Prev</button><span id="counter">1</span><button id="next">Next</button>
