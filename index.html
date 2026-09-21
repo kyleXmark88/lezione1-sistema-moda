@@ -1,63 +1,43 @@
 <!DOCTYPE html>
 <html lang="it"><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Lezione 1 · Il Sistema Moda</title>
+<title>Lezione 1</title>
 <style>
-:root{--bg:#0a0a0a;--fg:#f3eee6;--mu:#c2b8aa;--gold:#d4b483;--card:#151515;--line:#333}
+:root{--bg:#0a0a0a;--fg:#f3eee6;--gold:#d4b483;--line:#333}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--bg);color:var(--fg);font-family:Georgia,serif}
 body{display:flex;flex-direction:column}
-header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:#111;z-index:30}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);background:#111;z-index:30}
 .brand b{color:var(--gold);font-weight:400}
 .controls{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
 button{background:transparent;color:var(--fg);border:1px solid #444;padding:7px 10px;cursor:pointer;font:11px/1 Helvetica,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}
 button.on{background:var(--gold);color:#111;border-color:var(--gold)}
 #counter{font:12px Helvetica,Arial,sans-serif;color:var(--gold)}
-.sub{display:none;background:#1a1610;padding:8px 14px;font:13px Helvetica,Arial,sans-serif;color:#eadcc4}
-body.en .sub{display:block}
 .home,.help{position:fixed;inset:0;z-index:40;background:#070707;overflow:auto;padding:28px 7vw 80px}
 .home.hide,.help.hide{display:none}
 .toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:18px;max-width:980px}
 .toc button{text-align:left;padding:14px;text-transform:none;letter-spacing:0;font:15px Helvetica,Arial,sans-serif;background:#141414}
 main{flex:1;position:relative;overflow:hidden}
-.slide{position:absolute;inset:0;display:none;overflow:auto;padding-bottom:90px}
+.slide{position:absolute;inset:0;display:none;overflow:auto;padding-bottom:48px}
 .slide.on{display:block}
-.hero{height:32vh;overflow:hidden;background:#1a1a1a}
-.hero img{width:100%;height:32vh;object-fit:cover;display:block}
-.pad{padding:16px 6vw 0;max-width:900px}
-.k{font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-h2{font-size:clamp(24px,4vw,38px);font-weight:400;margin:0 0 14px}
-p,li{font-family:Helvetica,Arial,sans-serif;font-size:16.5px;line-height:1.62}
-p+p{margin-top:11px}
-.mu{color:var(--mu)}
-.quote{border-left:3px solid var(--gold);padding:10px 0 10px 14px;margin:14px 0;font-style:italic;color:#efe4d0}
-.cite{display:block;margin-top:6px;font-style:normal;font-size:12px;color:var(--mu)}
-.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
-.refs img{width:100%;height:130px;object-fit:cover;display:block;background:#1a1a1a}
-.cap{font:11px Helvetica,Arial,sans-serif;color:var(--mu);margin-top:4px}
-details{border:1px solid #3a3224;background:#12100c;padding:10px 12px;margin:14px 0}
-details summary{cursor:pointer;color:var(--gold);font:13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
-.card{background:var(--card);border:1px solid var(--line);padding:12px}
-footer{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;padding:8px 12px;border-top:1px solid var(--line);font:11px Helvetica,Arial,sans-serif;color:var(--mu);background:#111}
+.hero{height:62vh;overflow:hidden;background:#1a1a1a}
+.hero img{width:100%;height:62vh;object-fit:cover;display:block}
+.pad{padding:12px 6vw 0}
+.k{font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+h2{font-size:clamp(22px,3.4vw,34px);font-weight:400;margin:0 0 10px}
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 6vw}
+.refs img{width:100%;height:160px;object-fit:cover;display:block;background:#1a1a1a}
+footer{position:fixed;bottom:0;left:0;right:0;padding:8px 12px;border-top:1px solid var(--line);background:#111;height:36px}
 body.en .it{display:none!important}body.en .en{display:block}body:not(.en) .en{display:none!important}body:not(.en) .it{display:block}
-span.en,span.it{display:none}body.en span.en{display:inline!important}body:not(.en) span.it{display:inline!important}
-li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en) li.it{display:list-item!important}
+#tr,#voice,.sub,#helpBtn,#help{display:none!important}
 </style></head>
 <body>
 <div class="home" id="home">
-<div class="k">Fashion Styling Fundamentals · 150 min</div>
 <h2>Il Sistema Moda</h2>
-<p class="it mu">Due viste: classe (pulita) e docente (copione a destra). Pulsante Docente / Proiettore.</p>
-<p style="margin:18px 0"><button class="on" id="startBtn">Inizia</button> <button id="helpBtn">Come funziona</button></p>
+<p style="margin:18px 0"><button class="on" id="startBtn">Inizia</button></p>
 <div class="toc" id="toc"></div>
 </div>
-<div class="help hide" id="help">
-<div class="k">Guida</div>
-<h2 class="it">Due schermi</h2>
-<p class="it">Laptop tuo: apri il link DOCENTE. Proiettore o PC studenti: link CLASSE. Stesse slide. Solo tu vedi il testo da leggere a destra, nascosto dallo schermo.</p>
-<p style="margin-top:18px"><button id="helpClose">Chiudi</button></p>
-</div>
+<div class="help hide" id="help"></div>
 <header>
 <div class="brand">FSF · <b>Lezione 1</b></div>
 <div class="controls">
@@ -70,16 +50,15 @@ li.en,li.it{display:none}body.en li.en{display:list-item!important}body:not(.en)
 <span id="timer"></span>
 <button id="prev">Prev</button><span id="counter">1</span><button id="next">Next</button>
 </div></header>
-<div class="sub"><small>EN</small> <span id="subtxt"></span></div>
+<div class="sub"><span id="subtxt"></span></div>
 <main id="deck"></main>
-<footer><span>Classe pulita · Docente con copione</span><span>Home</span></footer>
+<footer></footer>
 <script src="p0.js"></script>
 <script src="p1.js"></script>
 <script src="p2.js"></script>
 <script src="p3.js"></script>
 <script src="p4.js"></script>
 <script src="engine.js"></script>
-<script src="say.js"></script>
 <script src="notes.js"></script>
 <script src="docente.js"></script>
 </body></html>
