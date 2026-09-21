@@ -18,5 +18,6 @@ window.TEACHER_NOTES={
 "Cap. 16":{it:"Copertine PD. Nome, posa, tipo, credito, stagione, tesi.",en:"PD covers. Name, pose, type, credit, season, thesis."},
 "Cap. 17":{it:"Vogue verdetto. i-D scena.",en:"Vogue verdict. i-D scene."},
 "Cap. 18":{it:"Coddington racconta. Enninful allarga. Nessuno disegna.",en:"Coddington tells. Enninful widens. Neither designs."},
-"Cap. 19":{it:"Due fonti. Cinque righe da soli.",en:"Two sources. Five lines, alone."}
+"Cap. 19":{it:"Due fonti. Cinque righe da soli.",en:"Two sources. Five lines, alone."},
+"Cap. T":{it:"Qui c e tutto il testo della lezione.",en:"All lesson text is in this section."}
 };
