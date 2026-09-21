@@ -1,0 +1,1 @@
+document.addEventListener("click",function(e){var t=e.target;if(!t||!t.classList||!t.classList.contains("say"))return;var txt=t.getAttribute("data-say");if(!txt||!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(txt);u.lang="en-GB";u.rate=.95;speechSynthesis.speak(u);});
